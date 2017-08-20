@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+struct node
+{
+    int val;
+    node *next;
+};
+
+class my_queue
+{
+    private : 
+        node *rear=NULL,*front=NULL;
+    public:
+        void push(int x)
+        {
+            node *temp = new node;
+            temp->val = x;
+            temp->next = NULL;
+            if(front==NULL)
+            {
+                front = rear = temp;
+            }
+            else
+            {
+                rear->next = temp;
+                rear = rear->next;
+            }
+        }
+        void pop()
+        {
+            if(front==NULL)
+                cout<<"Stack is empty";
+            else
+            {
+                node *temp = front;
+                front = front->next;
+                delete(temp);
+            }
+        }
+        void showstack()
+        {
+            node *q;
+            q=front;
+         
+            if(front==NULL){
+                cout<<"Stack is empty!!";
+            }
+            else{
+                while(q!=NULL)
+                {
+                    cout<<q->val<<" ";
+                    q=q->next;
+                } 
+            }
+        }
+};
+
+int main() {
+	my_queue m;
+	m.push(3);
+	m.push(4);
+	m.push(5);
+	m.pop();
+	m.showstack();
+	return 0;
+}
+
